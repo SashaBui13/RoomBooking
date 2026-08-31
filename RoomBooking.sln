@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35828.75 d17.13
+VisualStudioVersion = 17.13.35828.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomBooking.Domain", "RoomBooking.Domain\RoomBooking.Domain.csproj", "{E2077109-BAAA-41E8-8A79-4690724F4670}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomBooking.Api", "RoomBooking.Api\RoomBooking.Api.csproj", "{C5428C56-CA59-168E-2379-B6315D6AD85F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomBooking.Application", "RoomBooking.Application\RoomBooking.Application.csproj", "{698196B4-CE63-1928-F6B1-02EF8CD61B46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomBooking.Infrastructure", "RoomBooking.Infrastructure\RoomBooking.Infrastructure.csproj", "{63A0CA14-2F97-AA54-C073-72CD8012DDD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{E2077109-BAAA-41E8-8A79-4690724F4670}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2077109-BAAA-41E8-8A79-4690724F4670}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2077109-BAAA-41E8-8A79-4690724F4670}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5428C56-CA59-168E-2379-B6315D6AD85F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5428C56-CA59-168E-2379-B6315D6AD85F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5428C56-CA59-168E-2379-B6315D6AD85F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5428C56-CA59-168E-2379-B6315D6AD85F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{698196B4-CE63-1928-F6B1-02EF8CD61B46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{698196B4-CE63-1928-F6B1-02EF8CD61B46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{698196B4-CE63-1928-F6B1-02EF8CD61B46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{698196B4-CE63-1928-F6B1-02EF8CD61B46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63A0CA14-2F97-AA54-C073-72CD8012DDD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63A0CA14-2F97-AA54-C073-72CD8012DDD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63A0CA14-2F97-AA54-C073-72CD8012DDD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63A0CA14-2F97-AA54-C073-72CD8012DDD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
