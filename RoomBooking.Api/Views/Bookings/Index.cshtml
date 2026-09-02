@@ -1,0 +1,66 @@
+﻿@model IEnumerable<RoomBooking.Application.DTOs.BookingDto>
+
+@{
+    ViewData["Title"] = "Список бронювань";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold mb-0">Усі бронювання</h2>
+    <a asp-action="Search" class="btn btn-primary">+ Нове бронювання</a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="card p-5 text-center shadow-sm">
+        <p class="text-muted mb-0">Активних або минулих бронювань поки що немає.</p>
+    </div>
+}
+else
+{
+    <div class="card shadow-sm border-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Зал</th>
+                        <th>Початок</th>
+                        <th>Завершення</th>
+                        <th>Осіб</th>
+                        <th>Послуги</th>
+                        <th>Загальна сума</th>
+                        <th>Дії</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var b in Model)
+                    {
+                        <tr>
+                            <td>@b.Id</td>
+                            <td class="fw-bold">@b.RoomName</td>
+                            <td>@b.StartTime.ToString("dd.MM.yyyy HH:mm")</td>
+                            <td>@b.EndTime.ToString("dd.MM.yyyy HH:mm")</td>
+                            <td>@b.AttendeesCount</td>
+                            <td>
+                                @if (b.SelectedServices.Any())
+                                {
+                                    <span class="badge bg-info text-dark">@string.Join(", ", b.SelectedServices)</span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted small">—</span>
+                                }
+                            </td>
+                            <td class="fw-bold text-success">@b.TotalPrice.ToString("N2") грн</td>
+                            <td>
+                                <form asp-action="Cancel" asp-route-id="@b.Id" method="post" onsubmit="return confirm('Скасувати це бронювання?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Скасувати</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

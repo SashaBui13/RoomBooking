@@ -1,0 +1,42 @@
+﻿@model RoomBooking.Application.DTOs.CreateRoomDto
+@{
+    ViewData["Title"] = "Додати новий зал";
+}
+
+<h2>Створення конференц-залу</h2>
+
+<form asp-action="Create" method="post" class="card form-container">
+    <div class="form-group">
+        <label>Назва залу:</label>
+        <input asp-for="Name" class="form-control" placeholder="Наприклад: Зал А" required />
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label>Місткість (осіб):</label>
+            <input asp-for="Capacity" type="number" min="1" class="form-control" placeholder="50" required />
+        </div>
+        <div class="form-group">
+            <label>Базова вартість оренди за годину (грн):</label>
+            <input asp-for="BasePricePerHour" type="number" step="0.01" min="0" class="form-control" placeholder="2000" required />
+        </div>
+    </div>
+
+    <hr style="margin: 20px 0;" />
+    <h3>Доступні послуги</h3>
+    <div id="services-list">
+    </div>
+
+    <button type="button" class="btn btn-secondary" onclick="addServiceField()" style="margin-bottom: 20px;">
+        + Додати послугу до залу
+    </button>
+
+    <div>
+        <button type="submit" class="btn btn-success">Зберегти зал</button>
+        <a asp-action="Index" class="btn btn-secondary">Скасувати</a>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="~/js/room-services.js" asp-append-version="true"></script>
+}
