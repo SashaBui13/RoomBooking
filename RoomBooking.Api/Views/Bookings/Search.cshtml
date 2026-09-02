@@ -1,0 +1,78 @@
+﻿@model RoomBooking.Web.ViewModels.SearchAndBookViewModel
+
+@{
+    ViewData["Title"] = "Пошук та бронювання залу";
+}
+
+<h2 class="fw-bold mb-4">Пошук вільного залу</h2>
+
+<div class="card p-4 shadow-sm mb-4">
+    <form asp-action="Search" method="get" class="row g-3">
+        <div class="col-md-4">
+            <label class="form-label fw-semibold">Час початку:</label>
+            <input type="datetime-local" name="startTime" class="form-control" value="@Model.StartTime.ToString("yyyy-MM-ddTHH:mm")" required />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label fw-semibold">Час завершення:</label>
+            <input type="datetime-local" name="endTime" class="form-control" value="@Model.EndTime.ToString("yyyy-MM-ddTHH:mm")" required />
+        </div>
+        <div class="col-md-2">
+            <label class="form-label fw-semibold">Місткість (осіб):</label>
+            <input type="number" min="1" name="requiredCapacity" class="form-control" value="@Model.RequiredCapacity" required />
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary w-100">Шукати</button>
+        </div>
+    </form>
+</div>
+
+<h3 class="fw-bold mb-3">Доступні зали</h3>
+
+@if (!Model.AvailableRooms.Any())
+{
+    <div class="alert alert-info">
+        За вашими критеріями вільних залів не знайдено або пошук ще не виконано.
+    </div>
+}
+else
+{
+    <div class="row g-4">
+        @foreach (var room in Model.AvailableRooms)
+        {
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 p-3 shadow-sm border-0">
+                    <div class="card-body d-flex flex-column">
+                        <h4 class="card-title fw-bold">@room.Name</h4>
+                        <p class="text-muted mb-2">Місткість: @room.Capacity осіб</p>
+                        <p class="text-primary fw-bold mb-3">@room.BasePricePerHour.ToString("N2") грн/год</p>
+
+                        <form asp-action="Book" method="post" class="mt-auto">
+                            <input type="hidden" name="RoomId" value="@room.Id" />
+                            <input type="hidden" name="StartTime" value="@Model.StartTime.ToString("o")" />
+                            <input type="hidden" name="EndTime" value="@Model.EndTime.ToString("o")" />
+                            <input type="hidden" name="AttendeesCount" value="@Model.RequiredCapacity" />
+
+                            @if (room.AvailableServices.Any())
+                            {
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold small">Додаткові послуги:</label>
+                                    @foreach (var s in room.AvailableServices)
+                                    {
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="SelectedServiceIds" value="@s.Id" id="srv_@(room.Id)_@(s.Id)" />
+                                            <label class="form-check-label small" for="srv_@(room.Id)_@(s.Id)">
+                                                @s.Name (+@s.Price.ToString("N2") грн)
+                                            </label>
+                                        </div>
+                                    }
+                                </div>
+                            }
+
+                            <button type="submit" class="btn btn-success w-100">Забронювати</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

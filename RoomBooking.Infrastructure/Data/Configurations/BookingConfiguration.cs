@@ -4,9 +4,9 @@ using RoomBooking.Domain.Entities;
 
 namespace RoomBooking.Infrastructure.Data.Configurations;
 
-public class BookingConfiguration : IEntityTypeConfiguration<Booking>
+public class BookingConfiguration : IEntityTypeConfiguration<BookingEntity>
 {
-    public void Configure(EntityTypeBuilder<Booking> builder)
+    public void Configure(EntityTypeBuilder<BookingEntity> builder)
     {
         builder.ToTable("Bookings");
 
